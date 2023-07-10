@@ -9,24 +9,24 @@ import (
 
 type (
 	Config struct {
-		Environment string
+		Environment string `env-default:"dev"`
 		Http        HttpConfig
 		Limiter     LimiterConfig
 		Most        MostConfig
 	}
 
 	HttpConfig struct {
-		Host               string        `yaml:"http.host" env:"HOST" env-default:"localhost"`
-		Port               string        `yaml:"http.port" env:"PORT" env-default:"5432"`
-		ReadTimeout        time.Duration `yaml:"http.readTimeout" env:"READ_TIMEOUT" env-default:"10s"`
-		WriteTimeout       time.Duration `yaml:"http.writeTimeout" env:"WRITE_TIMEOUT" env-default:"10s"`
-		MaxHeaderMegabytes int           `yaml:"http.maxHeaderBytes" env-default:"1"`
+		Host               string        `yaml:"host" env:"HOST" env-default:"localhost"`
+		Port               string        `yaml:"port" env:"PORT" env-default:"5432"`
+		ReadTimeout        time.Duration `yaml:"readTimeout" env:"READ_TIMEOUT" env-default:"10s"`
+		WriteTimeout       time.Duration `yaml:"writeTimeout" env:"WRITE_TIMEOUT" env-default:"10s"`
+		MaxHeaderMegabytes int           `yaml:"maxHeaderBytes" env-default:"1"`
 	}
 
 	LimiterConfig struct {
-		RPS   int           `yaml:"limiter.rps" env-default:"10"`
-		Burst int           `yaml:"limiter.burst" env-default:"20"`
-		TTL   time.Duration `yaml:"limiter.ttl" env-default:"10m"`
+		RPS   int           `yaml:"rps" env-default:"10"`
+		Burst int           `yaml:"burst" env-default:"20"`
+		TTL   time.Duration `yaml:"ttl" env-default:"10m"`
 	}
 
 	MostConfig struct {
@@ -36,10 +36,10 @@ type (
 	}
 )
 
-func Init(configDir string) (*Config, error) {
+func Init(path string) (*Config, error) {
 	var conf Config
 
-	if err := cleanenv.ReadConfig(configDir, &conf); err != nil {
+	if err := cleanenv.ReadConfig(path, &conf); err != nil {
 		return nil, fmt.Errorf("failed to read config file. error: %w", err)
 	}
 
