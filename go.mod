@@ -7,7 +7,6 @@ require (
 	github.com/ilyakaznacheev/cleanenv v1.4.2
 	github.com/mattermost/mattermost-server/v6 v6.7.2
 	github.com/sirupsen/logrus v1.9.3
-	github.com/subosito/gotenv v1.2.0
 	golang.org/x/time v0.3.0
 )
 

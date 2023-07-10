@@ -15,13 +15,12 @@ import (
 	transport "github.com/Alexander272/mattermost_bot/internal/transport/http"
 	"github.com/Alexander272/mattermost_bot/pkg/logger"
 	"github.com/Alexander272/mattermost_bot/pkg/mattermost"
-	"github.com/subosito/gotenv"
 )
 
 func main() {
-	if err := gotenv.Load(".env"); err != nil {
-		logger.Fatalf("error loading env variables: %s", err.Error())
-	}
+	// if err := gotenv.Load(".env"); err != nil {
+	// 	logger.Fatalf("error loading env variables: %s", err.Error())
+	// }
 
 	conf, err := config.Init("configs/config.yaml")
 	if err != nil {
