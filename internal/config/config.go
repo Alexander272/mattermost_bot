@@ -17,7 +17,7 @@ type (
 
 	HttpConfig struct {
 		Host               string        `yaml:"host" env:"HOST" env-default:"localhost"`
-		Port               string        `yaml:"port" env:"PORT" env-default:"5432"`
+		Port               string        `yaml:"port" env:"PORT" env-default:"11000"`
 		ReadTimeout        time.Duration `yaml:"readTimeout" env:"READ_TIMEOUT" env-default:"10s"`
 		WriteTimeout       time.Duration `yaml:"writeTimeout" env:"WRITE_TIMEOUT" env-default:"10s"`
 		MaxHeaderMegabytes int           `yaml:"maxHeaderBytes" env-default:"1"`

@@ -18,4 +18,5 @@ type MessageData struct {
 	URL     string `json:"url" binding:"required"`
 	User    string `json:"user"`
 	Company string `json:"company"`
+	Request string `json:"request"`
 }

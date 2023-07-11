@@ -57,10 +57,17 @@ func (s *MostService) Send(ctx context.Context, message models.Message) (res *mo
 		},
 	}
 
+	request := ""
+	if message.Data.Request != "" {
+		request = fmt.Sprintf("\n##### Request\n ```json\n %s\n```", message.Data.Request)
+	}
+
 	post := &model.Post{
 		ChannelId: s.ChannelId,
 		// Message:   "### ```SealurPro```\n #pro_error\n ### Дата: 07.07.2030 15:54:45",
-		Message: fmt.Sprintf("### ```%s```\n #%s_error\n #### Дата: %s", message.Service.Name, message.Service.Id, message.Data.Date),
+		Message: fmt.Sprintf("### ```%s```\n #%s_error\n #### Дата: %s%s",
+			message.Service.Name, message.Service.Id, message.Data.Date, request,
+		),
 	}
 
 	post.AddProp("attachments", []*model.SlackAttachment{attachment})
