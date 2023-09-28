@@ -44,17 +44,32 @@ func (s *MostService) Send(ctx context.Context, message models.Message) (res *mo
 				Short: true,
 				Value: message.Data.URL,
 			},
-			{
-				Title: "Пользователь",
-				Short: true,
-				Value: message.Data.User,
-			},
-			{
-				Title: "Компания",
-				Short: true,
-				Value: message.Data.Company,
-			},
+			// {
+			// 	Title: "Пользователь",
+			// 	Short: true,
+			// 	Value: message.Data.User,
+			// },
+			// {
+			// 	Title: "Компания",
+			// 	Short: true,
+			// 	Value: message.Data.Company,
+			// },
 		},
+	}
+
+	if message.Data.User != "" {
+		attachment.Fields = append(attachment.Fields, &model.SlackAttachmentField{
+			Title: "Пользователь",
+			Short: true,
+			Value: message.Data.User,
+		})
+	}
+	if message.Data.Company != "" {
+		attachment.Fields = append(attachment.Fields, &model.SlackAttachmentField{
+			Title: "Компания",
+			Short: true,
+			Value: message.Data.Company,
+		})
 	}
 
 	request := ""
